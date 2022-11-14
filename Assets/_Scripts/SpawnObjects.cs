@@ -21,6 +21,6 @@ public class SpawnObjects : MonoBehaviour
 
     private void PlaceObject()
     {
-        Instantiate(_spawnObject, _indicatorController.PlacementPose.position, _indicatorController.PlacementPose.rotation);
+        Instantiate(_spawnObject, _indicatorController.transform.position, _indicatorController.transform.rotation);
     }
 }

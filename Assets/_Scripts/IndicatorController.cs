@@ -17,7 +17,7 @@ public class IndicatorController : MonoBehaviour
     private void Start()
     {
         _raycastManager = FindObjectOfType<ARRaycastManager>();
-        _indicatorObject = GetComponentInChildren<Transform>().gameObject;
+        _indicatorObject = transform.GetChild(0).gameObject;
 
         _indicatorObject.SetActive(false);
     }
@@ -39,11 +39,13 @@ public class IndicatorController : MonoBehaviour
         if (placementPoseIsValid)
         {
             placementPose = hits[0].pose;
+            transform.position = placementPose.position;
+            transform.rotation = placementPose.rotation;
 
             // Is this optional?
-            var cameraForward = Camera.current.transform.forward;
-            var cameraBearing = new Vector3(cameraForward.x, 0, cameraForward.z).normalized;
-            placementPose.rotation = Quaternion.LookRotation(cameraBearing);
+            //var cameraForward = Camera.current.transform.forward;
+            //var cameraBearing = new Vector3(cameraForward.x, 0, cameraForward.z).normalized;
+            //placementPose.rotation = Quaternion.LookRotation(cameraBearing);
         }
     }
 
@@ -52,7 +54,7 @@ public class IndicatorController : MonoBehaviour
         if (placementPoseIsValid)
         {
             _indicatorObject.SetActive(true);
-            _indicatorObject.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
+            //_indicatorObject.
         }
         else
         {
